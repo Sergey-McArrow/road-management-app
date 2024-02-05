@@ -23,7 +23,7 @@ Hint: Check https://github.com/typicode/json-server for more information about t
 # Your task
 1. Create a react app with a map component (e.g. leaflet)
 2. Fetch the GeoJSON FeatureCollection from the server and display it on the map
-3. Color the roads according to their eemi grades (1-1.5 = blue, 1.5-2.5 = light-green, 2.5-3.5 = dark-green, 3.5-4.5 = yellow, 4.5-5 = red; as different grades exist, add a dropdown to the map that allows to select the evaluation to be displayed e.g. GW, TWRIO, RISS, ...)
+3. Color the roads according to their eemi grades (1-1.49 = blue, 1.5-2.49 = light-green, 2.5-3.49 = dark-green, 3.5-4.49 = yellow, 4.5-5.00 = red; as different grades exist, add a dropdown to the map that allows to select the evaluation to be displayed e.g. GW, TWRIO, RISS, ...).
 4. Add a legend to the map
 5. Create hover effects for the roads (e.g. highlight the road and show attributes and coarse grained evaluations in a tooltip)
 6. Create a sidebar with a table and diagrams that shows average statistics over all roads (e.g. average GW) - Find other interesting statistics and display them in useful diagrams and tables

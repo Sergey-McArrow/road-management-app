@@ -1,0 +1,6 @@
+> git push -u origin feature/map-road-analysis
+ERROR: Write access to repository not granted.
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.

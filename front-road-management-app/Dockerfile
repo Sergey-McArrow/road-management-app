@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY package.json ./
 
-# Install all dependencies for building
-RUN bun install
+# Install only production dependencies
+RUN bun install --omit dev
 
 COPY . .
 

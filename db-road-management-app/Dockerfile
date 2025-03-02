@@ -2,9 +2,8 @@ FROM oven/bun:1
 
 WORKDIR /app
 
-RUN apk add --no-cache curl
-
 COPY package.json ./
+COPY db.json ./
 
 RUN bun install
 

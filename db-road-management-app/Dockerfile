@@ -4,10 +4,9 @@ WORKDIR /app
 
 COPY package.json ./
 COPY db.json ./
+COPY . .
 
 RUN bun install
-
-COPY . .
 
 EXPOSE 3001
 

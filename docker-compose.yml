@@ -13,11 +13,6 @@ services:
       - VITE_API_URL=http://18.192.25.99:3001
     networks:
       - app-network
-    healthcheck:
-      test: ["CMD", "nc", "-z", "localhost", "3000"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
     deploy:
       mode: replicated
       replicas: 1
@@ -33,9 +28,6 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-    depends_on:
-      database:
-        condition: service_healthy
 
   database:
     build:
@@ -50,12 +42,6 @@ services:
       - app-network
     volumes:
       - db_data:/app/data
-    healthcheck:
-      test: ["CMD", "nc", "-z", "localhost", "3001"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 10s
     deploy:
       restart_policy:
         condition: on-failure

@@ -3,7 +3,6 @@ FROM oven/bun:1 as builder
 WORKDIR /app
 
 COPY package.json ./
-COPY bun.lockb ./
 
 RUN bun install
 

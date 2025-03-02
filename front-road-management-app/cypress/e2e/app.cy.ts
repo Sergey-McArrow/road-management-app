@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe('Road Management App', () => {
   beforeEach(() => {
     cy.visit('/')

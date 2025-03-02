@@ -6,7 +6,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 
 # Install dependencies without optional packages (like Cypress)
-RUN bun install --no-optional
+RUN bun install --production
 
 COPY . .
 

@@ -9,8 +9,9 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts'
-import { mainGradesArray, getGradeLabel } from '../const'
+import { mainGradesArray } from '../const'
 import type { TStatisticsSidebarProps } from '../types/statistics'
+import { getGradeLabel } from '@/helpers'
 
 export const StatisticsSidebar: FC<TStatisticsSidebarProps> = ({ roads }) => {
   const gradeStats = useMemo(() => {
@@ -41,7 +42,9 @@ export const StatisticsSidebar: FC<TStatisticsSidebarProps> = ({ roads }) => {
     <div className="flex w-80 flex-col gap-4 overflow-x-hidden bg-white p-4 shadow-lg">
       <h2 className="text-lg font-semibold">Straßen Statistiken</h2>
       <div className="flex flex-col gap-2">
-        <h3 className="text-lg font-semibold">Durchschnittliche Besoldungsgruppen</h3>
+        <h3 className="text-lg font-semibold">
+          Durchschnittliche Besoldungsgruppen
+        </h3>
         <div className="h-64">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={gradeStats}>

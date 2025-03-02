@@ -3,7 +3,7 @@ import { getRoads } from '../api/roads'
 import type { TRoadFeature } from '../types/roads'
 
 export const useRoads = () => {
-  const { data: roads = { type: 'FeatureCollection', features: [] } } = useQuery({
+  const { data: roads = { type: 'FeatureCollection', features: [] }, isLoading, isError, error } = useQuery({
     queryKey: ['roads'],
     queryFn: getRoads,
   })
@@ -24,5 +24,8 @@ export const useRoads = () => {
   return {
     roads,
     gradeStats: calculateGradeStats(),
+    isLoading,
+    isError,
+    error,
   }
 }

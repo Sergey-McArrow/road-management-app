@@ -10,7 +10,12 @@ import type { TTodoFormData } from '../types/todo'
 export const useTodos = (roadId?: number) => {
   const queryClient = useQueryClient()
 
-  const { data: todos = [] } = useQuery({
+  const { 
+    data: todos = [], 
+    isLoading: isLoadingTodos,
+    isError: isErrorTodos,
+    error: errorTodos 
+  } = useQuery({
     queryKey: ['todos', roadId],
     queryFn: () => (roadId ? getTodosByRoadId(roadId) : getTodos()),
   })
@@ -32,7 +37,9 @@ export const useTodos = (roadId?: number) => {
 
   return {
     todos,
-    isLoading: createMutation.isPending || updateMutation.isPending,
+    isLoading: isLoadingTodos || createMutation.isPending || updateMutation.isPending,
+    isError: isErrorTodos || createMutation.isError || updateMutation.isError,
+    error: errorTodos || createMutation.error || updateMutation.error,
     createTodo: createMutation.mutate,
     updateTodo: updateMutation.mutate,
   }

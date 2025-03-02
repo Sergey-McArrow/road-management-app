@@ -1,12 +1,12 @@
-FROM oven/bun:1 as builder
+FROM oven/bun:1.0.29 as builder
 
 WORKDIR /app
 
 # Copy package files
-COPY package.json ./
+COPY package.json pnpm-lock.yaml ./
 
-# Install only production dependencies
-RUN bun install --omit dev
+# Install dependencies without optional packages (like Cypress)
+RUN bun install --no-optional
 
 COPY . .
 

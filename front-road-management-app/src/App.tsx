@@ -11,7 +11,6 @@ import { RoadsPage } from './pages/roads-page'
 import { EvaluationsPage } from './pages/evaluations-page'
 import { TodosPage } from './pages/todos-page'
 import { NavigationBar } from './components/navigation-bar'
-import './App.css'
 
 const queryClient = new QueryClient()
 

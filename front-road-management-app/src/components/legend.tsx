@@ -1,13 +1,6 @@
 import { useMap } from 'react-leaflet'
 import { useCallback } from 'react'
-
-const legendItems = [
-  { range: '1.00 - 1.49', color: '#3388ff' },
-  { range: '1.50 - 2.49', color: '#90EE90' },
-  { range: '2.50 - 3.49', color: '#006400' },
-  { range: '3.50 - 4.49', color: '#FFFF00' },
-  { range: '4.50 - 5.00', color: '#FF0000' },
-]
+import { legendItems } from '@/const'
 
 export const Legend = () => {
   const map = useMap()

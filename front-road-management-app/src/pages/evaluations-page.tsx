@@ -9,31 +9,22 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts'
+import { calculateGradeRanges } from '@/helpers'
+import { Loading } from '@/ui/loading'
+import { Error } from '@/ui/error'
 
 export const EvaluationsPage: FC = () => {
-  const { roads, gradeStats } = useRoads()
+  const { roads, gradeStats, isLoading, isError } = useRoads()
 
-  const calculateGradeRanges = () => {
-    const ranges: Record<string, { min: number; avg: number; max: number }> = {}
-
-    roads.features.forEach((road) => {
-      const grade = road.properties.eemi_grade.gw
-      if (!ranges[grade]) {
-        ranges[grade] = { min: Infinity, avg: 0, max: -Infinity }
-      }
-      const length = road.properties.len / 1000
-      ranges[grade].min = Math.min(ranges[grade].min, length)
-      ranges[grade].max = Math.max(ranges[grade].max, length)
-      ranges[grade].avg = (ranges[grade].min + ranges[grade].max) / 2
-    })
-
-    return Object.entries(ranges).map(([grade, stats]) => ({
-      grade,
-      ...stats,
-    }))
+  if (isLoading) {
+    return <Loading />
   }
 
-  const gradeRanges = calculateGradeRanges()
+  if (isError) {
+    return <Error>Fehler beim Laden der Bewertungen</Error>
+  }
+
+  const gradeRanges = calculateGradeRanges(roads)
 
   return (
     <div className="container mx-auto p-4">

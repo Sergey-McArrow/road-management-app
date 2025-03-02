@@ -60,6 +60,7 @@ export const TodoModal: FC<TTodoModalProps> = ({
           onClick={onClose}
           className="text-gray-500 hover:text-gray-700"
           type="button"
+          disabled={isLoading}
         >
           ✕
         </button>
@@ -74,6 +75,7 @@ export const TodoModal: FC<TTodoModalProps> = ({
             type="text"
             {...register('title')}
             className="w-full rounded border bg-white p-2"
+            disabled={isLoading}
           />
           {errors.title && (
             <p className="mt-1 text-sm text-red-600">{errors.title.message}</p>
@@ -89,6 +91,7 @@ export const TodoModal: FC<TTodoModalProps> = ({
             {...register('description')}
             className="w-full rounded border bg-white p-2"
             rows={3}
+            disabled={isLoading}
           />
           {errors.description && (
             <p className="mt-1 text-sm text-red-600">
@@ -106,6 +109,7 @@ export const TodoModal: FC<TTodoModalProps> = ({
             type="email"
             {...register('author')}
             className="w-full rounded border bg-white p-2"
+            disabled={isLoading}
           />
           {errors.author && (
             <p className="mt-1 text-sm text-red-600">{errors.author.message}</p>
@@ -120,6 +124,7 @@ export const TodoModal: FC<TTodoModalProps> = ({
             id="status"
             {...register('status')}
             className="w-full rounded border bg-white p-2"
+            disabled={isLoading}
           >
             {Object.values(TTodoStatus.enum).map((status) => (
               <option key={status} value={status}>
@@ -129,13 +134,14 @@ export const TodoModal: FC<TTodoModalProps> = ({
           </select>
         </div>
 
-        <input type="hidden" {...register('road_fid')} />
+        <input type="hidden" {...register('road_fid')} disabled={isLoading} />
 
         <div className="mt-auto flex justify-end gap-2 pt-4">
           <button
             type="button"
             onClick={onClose}
             className="rounded bg-gray-200 px-4 py-2 font-medium hover:bg-gray-300"
+            disabled={isLoading}
           >
             Abbrechen
           </button>

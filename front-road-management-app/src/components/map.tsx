@@ -10,7 +10,7 @@ import 'leaflet/dist/leaflet.css'
 import type { PathOptions, Layer } from 'leaflet'
 import L from 'leaflet'
 import type { Feature } from 'geojson'
-import { defaultMapIcon, mainGradesArray, getGradeLabel } from '../const'
+import { defaultMapIcon, mainGradesArray } from '../const'
 import { TodoList } from './todo-list'
 import { useTodos } from '../hooks/use-todos'
 import type { TTodo, TTodoFormData } from '../types/todo'
@@ -19,6 +19,9 @@ import { useOutsideClick } from '../hooks/use-outside-click'
 import { TodoForm } from './todo-form'
 import { CloseButton } from '../ui/close-button'
 import { ToggleButton } from '../ui/toggle-button'
+import { Loading } from '@/ui/loading'
+import { Error } from '@/ui/error'
+import { getGradeLabel } from '@/helpers'
 
 type TMapProps = {
   position: TMapPosition
@@ -35,12 +38,21 @@ export const Map = ({ position, markers = [], roads }: TMapProps) => {
   const [selectedTodo, setSelectedTodo] = useState<TTodo | undefined>()
   const [isAddingTodo, setIsAddingTodo] = useState(false)
   const [activeDrawer, setActiveDrawer] = useState<TActiveDrawer>('none')
-  const { todos: allTodos } = useTodos()
+  const {
+    todos: allTodos,
+    isLoading: isLoadingAllTodos,
+    isError: isErrorAllTodos,
+    error: errorAllTodos,
+  } = useTodos()
   const {
     todos: roadTodos,
     createTodo,
     updateTodo,
+    isLoading: isLoadingRoadTodos,
+    isError: isErrorRoadTodos,
+    error: errorRoadTodos,
   } = useTodos(selectedRoad?.properties.fid)
+
   const layerRefs = useRef<{ [key: string]: Layer }>({})
   const statisticsButtonRef = useRef<HTMLButtonElement>(null)
   const todosButtonRef = useRef<HTMLButtonElement>(null)
@@ -186,6 +198,13 @@ export const Map = ({ position, markers = [], roads }: TMapProps) => {
     })
   }, [])
 
+  if (isLoadingAllTodos || isLoadingRoadTodos) {
+    return <Loading />
+  }
+  if (isErrorAllTodos || isErrorRoadTodos) {
+    return <Error> {errorAllTodos?.message || errorRoadTodos?.message}</Error>
+  }
+
   return (
     <div className="relative h-full w-full">
       <div className="absolute left-14 top-4 z-[999] flex gap-2">
@@ -321,7 +340,11 @@ export const Map = ({ position, markers = [], roads }: TMapProps) => {
                     + Neu
                   </button>
                 </div>
-                <TodoList todos={roadTodos} onEdit={handleEditTodo} />
+                {isLoadingRoadTodos ? (
+                  <p>Loading todos...</p>
+                ) : (
+                  <TodoList todos={roadTodos} onEdit={handleEditTodo} />
+                )}
               </div>
             )}
           </div>

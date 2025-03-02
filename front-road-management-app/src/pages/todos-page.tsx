@@ -1,8 +1,18 @@
 import { type FC } from 'react'
 import { useTodos } from '../hooks/use-todos'
+import { Loading } from '@/ui/loading'
+import { Error } from '@/ui/error'
 
 export const TodosPage: FC = () => {
-  const { todos } = useTodos()
+  const { todos, isLoading, isError } = useTodos()
+
+  if (isLoading) {
+    return <Loading />
+  }
+
+  if (isError) {
+    return <Error>Fehler beim Laden der TODOs</Error>
+  }
 
   return (
     <div className="container mx-auto p-4">

@@ -1,0 +1,35 @@
+services:
+  frontend:
+    build:
+      context: ./front-road-management-app
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./front-road-management-app:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - VITE_API_URL=http://localhost:3001
+    networks:
+      - app-network
+    command: bun run dev
+
+  database:
+    build:
+      context: ./db-road-management-app
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./db-road-management-app:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    networks:
+      - app-network
+    command: bun run start
+
+networks:
+  app-network:
+    driver: bridge

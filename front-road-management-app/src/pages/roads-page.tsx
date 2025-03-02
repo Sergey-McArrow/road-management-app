@@ -1,8 +1,18 @@
 import { type FC } from 'react'
 import { useRoads } from '../hooks/use-roads'
+import { Loading } from '@/ui/loading'
+import { Error } from '@/ui/error'
 
 export const RoadsPage: FC = () => {
-  const { roads } = useRoads()
+  const { roads, isLoading, isError } = useRoads()
+
+  if (isLoading) {
+    return <Loading />
+  }
+
+  if (isError) {
+    return <Error>Fehler beim Laden von Straßendaten</Error>
+  }
 
   return (
     <div className="container mx-auto p-4">

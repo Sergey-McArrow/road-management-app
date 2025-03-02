@@ -1,6 +1,6 @@
 import type { FC } from 'react'
-import { getGradeLabel } from '../const'
 import type { TGradeType } from '../types/grades'
+import { getGradeLabel } from '@/helpers'
 
 type TRoadTooltipProps = {
   name: string

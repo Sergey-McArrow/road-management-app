@@ -2,10 +2,12 @@ FROM oven/bun:1 as builder
 
 WORKDIR /app
 
+# Copy package files
 COPY package.json ./
 
-# Install only production dependencies
-RUN bun install --omit dev
+# Install dependencies for building
+RUN bun add typescript vite @vitejs/plugin-react && \
+    bun install --omit cypress,start-server-and-test
 
 COPY . .
 

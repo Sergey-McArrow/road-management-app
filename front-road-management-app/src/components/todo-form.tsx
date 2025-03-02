@@ -48,6 +48,7 @@ export const TodoForm: FC<TTodoFormProps> = ({
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="flex h-full flex-col gap-2 overflow-y-auto p-5"
+      data-testid="todo-form"
     >
       <h3 className="text-right text-lg font-medium">
         Todo {todo ? 'Bearbeiten' : 'Erstellen'}

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 export const NavigationBar: FC = () => {
   return (
-    <nav className="bg-white shadow">
+    <nav className="bg-white shadow" data-testid="nav-logo">
       <div className="mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center space-x-4">

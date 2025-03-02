@@ -206,7 +206,7 @@ export const Map = ({ position, markers = [], roads }: TMapProps) => {
   }
 
   return (
-    <div className="relative h-full w-full">
+    <div className="relative h-full w-full" data-testid="map-container">
       <div className="absolute left-14 top-4 z-[999] flex gap-2">
         <ToggleButton
           buttonRef={statisticsButtonRef}
@@ -274,6 +274,7 @@ export const Map = ({ position, markers = [], roads }: TMapProps) => {
 
       <div
         ref={statisticsDrawerRef}
+        data-testid="statistics-sidebar"
         className={`fixed left-0 top-0 z-[1000] h-full w-96 transform bg-white shadow-lg transition-transform duration-300 ${
           activeDrawer === 'statistics' ? 'translate-x-0' : '-translate-x-full'
         }`}
@@ -283,7 +284,7 @@ export const Map = ({ position, markers = [], roads }: TMapProps) => {
             <CloseButton onClick={() => toggleDrawer('statistics')} />
           </div>
           {roads ? (
-            <StatisticsSidebar roads={roads} />
+            <StatisticsSidebar roads={roads} data-testid="road-stats" />
           ) : (
             <div className="flex h-full items-center justify-center">
               <p className="text-gray-500">Keine Straßendaten verfügbar</p>
@@ -327,6 +328,7 @@ export const Map = ({ position, markers = [], roads }: TMapProps) => {
                   selectedRoad={selectedRoad}
                   onSubmit={handleTodoSubmit}
                   onCancel={handleTodoCancel}
+                  data-testid="todo-form"
                 />
               </div>
             ) : (
@@ -335,6 +337,7 @@ export const Map = ({ position, markers = [], roads }: TMapProps) => {
                   <h3 className="text-lg font-semibold">TODOs</h3>
                   <button
                     onClick={handleAddTodo}
+                    data-testid="add-todo-btn"
                     className="rounded bg-blue-500 px-3 py-1 text-sm font-medium text-white hover:bg-blue-600"
                   >
                     + Neu

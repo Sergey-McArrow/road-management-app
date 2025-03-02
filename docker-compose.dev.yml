@@ -4,7 +4,7 @@ services:
       context: ./front-road-management-app
       dockerfile: Dockerfile.dev
     ports:
-      - "3000:3000"
+      - "5173:5173"
     volumes:
       - ./front-road-management-app:/app
       - /app/node_modules
@@ -13,7 +13,7 @@ services:
       - VITE_API_URL=http://localhost:3001
     networks:
       - app-network
-    command: bun run dev
+    command: pnpm dev --host 0.0.0.0
 
   database:
     build:
@@ -28,7 +28,7 @@ services:
       - NODE_ENV=development
     networks:
       - app-network
-    command: bun run start
+    command: pnpm start
 
 networks:
   app-network:

@@ -1,13 +1,18 @@
-FROM oven/bun:1.0.29
+FROM node:20-alpine
 
 WORKDIR /app
 
+# Install pnpm
+RUN npm install -g pnpm
+
+# Copy package files
 COPY package.json ./
 
-RUN bun install
+# Install dependencies
+RUN pnpm install
 
 COPY . .
 
 EXPOSE 3001
 
-CMD ["bun", "run", "start"]
+CMD ["pnpm", "start"]

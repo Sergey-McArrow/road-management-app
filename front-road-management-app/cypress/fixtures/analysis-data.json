@@ -1,0 +1,26 @@
+{
+  "statusDistribution": {
+    "In Planung": 5,
+    "In Bearbeitung": 3,
+    "Abgeschlossen": 2
+  },
+  "roadCondition": {
+    "Good": 3,
+    "Fair": 4,
+    "Poor": 3
+  },
+  "todosByRoad": [
+    {
+      "roadName": "Test Road 1",
+      "todoCount": 3
+    },
+    {
+      "roadName": "Test Road 2",
+      "todoCount": 2
+    }
+  ],
+  "timeRange": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  }
+}

@@ -18,11 +18,13 @@ A React application for managing and visualizing road data with interactive maps
 ## Local Development
 
 1. Install dependencies:
+
    ```bash
    bun install
    ```
 
 2. Start the development server:
+
    ```bash
    bun dev
    ```
@@ -32,11 +34,13 @@ A React application for managing and visualizing road data with interactive maps
 ## Docker Deployment
 
 1. Build the Docker image:
+
    ```bash
    docker build -t road-management-app .
    ```
 
 2. Run the container:
+
    ```bash
    docker run -p 3000:3000 road-management-app
    ```
@@ -67,13 +71,16 @@ leaflet-react-app/
 - Leaflet
 - Recharts
 - Zod for validation
+- React Hook Form for form
 - PNPM for runtime and package management
 - Bun for dockerization
+- Cypress for E2E testing
 
 ## Development Commands
 
-- `bun dev` - Start development server
-- `bun run build` - Create production build
-- `bun run preview` - Preview production build locally
-- `bun run lint` - Run ESLint
-- `bun run type-check` - Run TypeScript type checking
+- `pnpm dev` - Start development server
+- `pnpm build` - Create production build
+- `pnpm preview` - Preview production build locally
+- `pnpm lint` - Run ESLint
+- `pnpm type-check` - Run TypeScript type checking
+- `bun run cypress` - Run Cypress E2E tests

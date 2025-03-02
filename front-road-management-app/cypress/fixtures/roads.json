@@ -1,4 +1,39 @@
 {
   "type": "FeatureCollection",
-  "features": []
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[13.404954, 52.520008], [13.405054, 52.520108]]
+      },
+      "properties": {
+        "fid": 1,
+        "name": "Test Road 1",
+        "length": 1000,
+        "width": 10,
+        "surface_type": "Asphalt",
+        "condition": "Good",
+        "last_inspection": "2025-01-01",
+        "eemi_grade": "A"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[13.404954, 52.521008], [13.405054, 52.521108]]
+      },
+      "properties": {
+        "fid": 2,
+        "name": "Test Road 2",
+        "length": 800,
+        "width": 8,
+        "surface_type": "Concrete",
+        "condition": "Fair",
+        "last_inspection": "2025-01-15",
+        "eemi_grade": "B"
+      }
+    }
+  ]
 }

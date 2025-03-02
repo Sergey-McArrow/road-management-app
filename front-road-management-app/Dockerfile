@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY package.json ./
 
-# Install all dependencies including devDependencies for building
-RUN bun install --production=false
+# Install all dependencies for building
+RUN bun install
 
 COPY . .
 
@@ -15,6 +15,7 @@ ENV VITE_API_URL=${VITE_API_URL}
 # Build the application
 RUN bun run build
 
+# Production image
 FROM nginx:alpine
 
 COPY --from=builder /app/dist /usr/share/nginx/html

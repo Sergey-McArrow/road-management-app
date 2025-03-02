@@ -4,13 +4,13 @@ services:
       context: ./front-road-management-app
       dockerfile: Dockerfile
       args:
-        - VITE_API_URL=http://18.192.25.99:3001
+        - VITE_API_URL=http://database:3001
     image: road-management-frontend:${TAG:-latest}
     ports:
       - "${FRONTEND_PORT:-80}:3000"
     environment:
       - NODE_ENV=${NODE_ENV:-production}
-      - VITE_API_URL=http://18.192.25.99:3001
+      - VITE_API_URL=http://database:3001
     networks:
       - app-network
     deploy:

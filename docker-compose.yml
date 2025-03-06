@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./front-road-management-app
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=http://18.192.25.99:3001
+    image: road-management-frontend:${TAG:-latest}
+    ports:
+      - "${FRONTEND_PORT:-80}:3000"
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+      - VITE_API_URL=http://18.192.25.99:3001
+    depends_on:
+      - database
+    networks:
+      - app-network
+    deploy:
+      mode: replicated
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  database:
+    build:
+      context: ./db-road-management-app
+      dockerfile: Dockerfile
+    image: road-management-db:${TAG:-latest}
+    ports:
+      - "${DB_PORT:-3001}:3001"
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+    networks:
+      - app-network
+    volumes:
+      - db_data:/app/data
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db_data:

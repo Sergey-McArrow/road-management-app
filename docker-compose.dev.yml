@@ -1,0 +1,35 @@
+services:
+  frontend:
+    build:
+      context: ./front-road-management-app
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./front-road-management-app:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - VITE_API_URL=http://localhost:3001
+    networks:
+      - app-network
+    command: pnpm dev --host 0.0.0.0
+
+  database:
+    build:
+      context: ./db-road-management-app
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./db-road-management-app:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    networks:
+      - app-network
+    command: pnpm start
+
+networks:
+  app-network:
+    driver: bridge

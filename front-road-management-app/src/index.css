@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  @apply m-0 box-border flex h-full min-h-svh w-full min-w-80 place-items-center bg-white p-0 text-black;
+}
+
+.app {
+  @apply m-0 box-border h-screen w-screen p-0;
+}
+
+#root {
+  @apply m-0 h-full w-full p-0;
+}
+
+button {
+  @apply rounded-md border border-transparent bg-gray-800 px-2 py-1 text-white;
+}
+
+button:hover {
+  @apply bg-gray-200;
+}
+
+button:focus {
+  @apply outline-none;
+}
+
+button:hover {
+  @apply border-sky-500;
+}
+button:focus,
+button:focus-visible {
+  @apply ring-2 ring-sky-700;
+}
+
+.leaflet-control-container .leaflet-top {
+  @apply !z-[999];
+}
+
+.leaflet-control-container .leaflet-bottom {
+  @apply !z-[999];
+}

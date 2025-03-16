@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.vercel
+
+
+#  ssh -i "/c/Users/serge/.ssh/aws_roads.pem" ubuntu@18.192.25.99

@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/api/todos", "destination": "http://18.192.25.99:3001/todos" }
+  ]
+}
